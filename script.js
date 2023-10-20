@@ -1,9 +1,6 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-// const dayjs = require('dayjs');
-// let date = document.getElementById('date')
-// let calendarItems = JSON.parse(localStorage.getItem("calendarItems")) || [];
 
 
 
@@ -45,9 +42,8 @@ now = dayjs();} setInterval(update, 1000);
       $('.time-block').each(function(){
         let block = this.id;
         let event = localStorage.getItem(block);
-        if (event) {
-          $(this).find('.description').val(event);
-        }
+        event =  $(this).find('.description').val(event);
+
       });
     }
     function events() {
