@@ -40,6 +40,13 @@ now = dayjs();} setInterval(update, 1000);
         }
       })
     }
+    function events() {
+      $('.saveBtn').on('click', function() {
+      let block = $(this).parent().attr('id');
+      let event = $(this).siblings('.description').val();
+      localStorage.setItem(block, event);
+    });
+  }
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -60,5 +67,6 @@ now = dayjs();} setInterval(update, 1000);
   // TODO: Add code to display the current date in the header of the page.
    colorBlock()
    changeColor()
+   events()
 });
 
