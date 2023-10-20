@@ -23,22 +23,32 @@ now = dayjs();} setInterval(update, 1000);
         'past'
       } else if (hourBlock == thisHour) {
         'present'
-      } else (hourBlock > thisHour); {
+      } else {
         'future'
       }
     });
     }
+
     function changeColor() {
       $('.time-block').each(function(){
         const hourBlock = parseInt(this.id)
-        if(hourBlock == thisHour) {
+        if(hourBlock < thisHour) {
+          $(this).removeClass('present future').addClass('past');
+        } else if (hourBlock === thisHour) {
           $(this).removeClass('past future').addClass('present');
-        } else if (hourBlock < thisHour) {
-          $(this).removeClass('future present').addClass('past');
         } else {
           $(this).removeClass('past present').addClass('future')
         }
       })
+    }
+    function saveEvent() {
+      $('.time-block').each(function(){
+        let block = this.id;
+        let event = localStorage.getItem(block);
+        if (event) {
+          $(this).find('.description').val(event);
+        }
+      });
     }
     function events() {
       $('.saveBtn').on('click', function() {
@@ -68,5 +78,6 @@ now = dayjs();} setInterval(update, 1000);
    colorBlock()
    changeColor()
    events()
+   saveEvent()
 });
 
