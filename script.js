@@ -15,14 +15,16 @@ now = dayjs();} setInterval(update, 1000);
 
     function colorBlock() {
       $('.time-block').each(function() {
-      const hourBlock = parseInt(this.id);
+       let parse = (this.id.split('-')[1])
+      const hourBlock = parseInt(parse);
       if (hourBlock < thisHour) {
-        'past'
+        $(this.children[1]).toggleClass('past')
       } else if (hourBlock == thisHour) {
-        'present'
+        $(this.children[1]).toggleClass('present')
       } else {
-        'future'
-      }
+        $(this.children[1]).toggleClass('future')
+      } 
+      console.log(hourBlock, thisHour)
     });
     }
 
@@ -53,7 +55,14 @@ now = dayjs();} setInterval(update, 1000);
       localStorage.setItem(block, event);
     });
   }
-  // TODO: Add a listener for click events on the save button. This code should
+ 
+   colorBlock()
+   changeColor()
+   events()
+   saveEvent()
+});
+
+ // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
   // function? How can DOM traversal be used to get the "hour-x" id of the
@@ -71,9 +80,3 @@ now = dayjs();} setInterval(update, 1000);
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
-   colorBlock()
-   changeColor()
-   events()
-   saveEvent()
-});
-
